@@ -3,31 +3,20 @@ package ru.netology.repository;
 import ru.netology.domain.Product;
 import ru.netology.exception.NonFoundException;
 
-public class ProductRepository {
+import java.util.ArrayList;
 
-  private Product[] storage = new Product[0];
+public class ProductRepository<T extends Product> {
 
-  public int size() {
-    return storage.length;
-  }
+  private ArrayList<T> storage = new ArrayList<>();
 
-  public void save(Product item) {
-    if (item != null) {
-      if (findById(item.getId()) == null) {
-        Product[] tmp = new Product[storage.length + 1];
-        System.arraycopy(storage, 0, tmp, 0, storage.length);
-        tmp[tmp.length - 1] = item;
-        storage = tmp;
-      }
+  public void save(T item) {
+    if (item != null && findById(item.getId()) == null) {
+      storage.add(item);
     }
   }
 
-  public Product[] findAll() {
-    return storage;
-  }
-
-  public Product findById(int id) {
-    for (Product item : storage) {
+  public T findById(int id) {
+    for (T item : storage) {
       if (item.getId() == id) {
         return item;
       }
@@ -36,24 +25,16 @@ public class ProductRepository {
   }
 
   public void removeById(int id) throws NonFoundException {
-    if (findById(id) != null) {
-      Product[] tmp = new Product[storage.length - 1];
-      int index = 0;
-      for (Product item : storage) {
-        if (item.getId() != id) {
-          tmp[index] = item;
-          index++;
-        }
-      }
-      storage = tmp;
+    T item = findById(id);
+    if (item != null) {
+      storage.remove(item);
+    } else {
+      throw new NonFoundException("Object with id " + id + " not found.");
     }
-    else
-      throw new NonFoundException("Product with id " + id + " not found.");
   }
 
-  // for tests:
-  public void setStorage(Product[] storage) {
-    this.storage = storage;
+  public ArrayList<T> getStorage() {
+    return storage;
   }
 
 }
