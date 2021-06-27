@@ -28,20 +28,15 @@ class TicketManagerTest {
 
     @Test
     void testAdd() {
+        assertNull(testManager.getAll());
         testManager.add(t1, t2, t3, t4, t5);
         Ticket[] expected = new Ticket[] {t1, t2, t3, t4, t5};
         assertArrayEquals(expected, testManager.getAll());
     }
 
-
-    @Test
-    void testMatches() {
-        assertTrue(testManager.matches(t1,"CIA", "DRS" ));
-        assertFalse(testManager.matches(t1,"EDI", "HAM" ));
-    }
-
     @Test
     void testFindAll() {
+        assertNull(testManager.findAll(null, null));
         testManager.add(t1, t2, t3, t4, t5, t6, t7, t8, t9);
         Ticket[] expected = new Ticket[] {t5, t1, t3, t2, t4 };
         Ticket[] actual = testManager.findAll("CIA","DRS");
