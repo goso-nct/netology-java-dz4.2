@@ -6,15 +6,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TicketTest {
 
-    Ticket t1 = new Ticket(1,"CIA", "DRS", 1000, "Победа");
-    Ticket t2 = new Ticket(2,"CIA", "DRS", 2000, "Аэрофлот");
-    Ticket t1copy = new Ticket(1,"CIA", "DRS", 1000, "Победа");
-    Ticket t1id = new Ticket(2,"CIA", "DRS", 1000, "Победа");
-    Ticket t1fromAp = new Ticket(1,"***", "DRS", 1000, "Победа");
-    Ticket t1toAp = new Ticket(1,"CIA", "***", 1000, "Победа");
-    Ticket t1price = new Ticket(1,"CIA", "DRS", 1500, "Победа");
-    Ticket t1company = new Ticket(1,"CIA", "DRS", 1000, "Pegas Fly");
-
+    Ticket t1        = new Ticket(1,"CIA", "DRS", 1000, "Победа", 100);
+    Ticket t2        = new Ticket(2,"CIA", "DRS", 2000, "Аэрофлот", 120);
+    Ticket t1copy    = new Ticket(1,"CIA", "DRS", 1000, "Победа", 100);
+    Ticket t1id      = new Ticket(2,"CIA", "DRS", 1000, "Победа", 100);
+    Ticket t1fromAp  = new Ticket(1,"***", "DRS", 1000, "Победа", 100);
+    Ticket t1toAp    = new Ticket(1,"CIA", "***", 1000, "Победа", 100);
+    Ticket t1price   = new Ticket(1,"CIA", "DRS", 1500, "Победа", 100);
+    Ticket t1company = new Ticket(1,"CIA", "DRS", 1000, "Pegas Fly", 100);
+    Ticket t1mins    = new Ticket(1,"CIA", "DRS", 1000, "Победа", 120);
 
     @Test
     void testEquals() {
@@ -26,6 +26,7 @@ class TicketTest {
         assertNotEquals(t1, t1toAp);
         assertNotEquals(t1, t1price);
         assertNotEquals(t1, t1company);
+        assertNotEquals(t1, t1mins);
         assertNotEquals(t1, null);
         assertNotEquals(t1, "b1");
     }
@@ -38,7 +39,7 @@ class TicketTest {
 
     @Test
     void testToString() {
-        String expected = "Ticket{id=1, fromAp='CIA', toAp='DRS', price=1000, company='Победа'}";
+        String expected = "Ticket{id=1, fromAp='CIA', toAp='DRS', price=1000, company='Победа', durationMins=100}";
         String actual = t1.toString();
         assertEquals(expected, actual);
     }
