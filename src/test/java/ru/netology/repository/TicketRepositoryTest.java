@@ -11,11 +11,10 @@ class TicketRepositoryTest {
     ProductRepository<Ticket> ticketRepository = new ProductRepository<>();
     Ticket[] expected;
 
-    Ticket t1 = new Ticket(1,"CIA", "DRS", 1000, "Победа");
-    Ticket t2 = new Ticket(2,"CIA", "DRS", 2000, "Аэрофлот");
-    Ticket t3 = new Ticket(3,"CIA", "DRS", 3000, "Люфтганза");
-    Ticket t4 = new Ticket(4,"CIA", "DRS", 3000, "Газпром авиа");
-
+    Ticket t1 = new Ticket(1,"CIA", "DRS", 1000, "Победа", 100);
+    Ticket t2 = new Ticket(2,"CIA", "DRS", 2000, "Аэрофлот", 100);
+    Ticket t3 = new Ticket(3,"CIA", "DRS", 3000, "Люфтганза", 100);
+    Ticket t4 = new Ticket(4,"CIA", "DRS", 3000, "Газпром авиа", 100);
 
     Ticket[] getAll() {
         // creating an array from the list
