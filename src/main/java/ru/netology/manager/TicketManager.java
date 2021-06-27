@@ -5,6 +5,7 @@ import ru.netology.repository.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class TicketManager {
@@ -29,6 +30,14 @@ public class TicketManager {
         Ticket[] tickets = searchBy(fromAp, toAp);
         if (tickets != null) {
             Arrays.sort(tickets);
+        }
+        return tickets;
+    }
+
+    public Ticket[] findAll(String fromAp, String toAp, Comparator<Ticket> comparator) {
+        Ticket[] tickets = searchBy(fromAp, toAp);
+        if (tickets != null) {
+            Arrays.sort(tickets, comparator);
         }
         return tickets;
     }
